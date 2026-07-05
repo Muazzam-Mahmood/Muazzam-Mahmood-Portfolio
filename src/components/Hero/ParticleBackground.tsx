@@ -18,9 +18,8 @@
 "use client";
 
 import { useCallback, memo } from "react";
-import Particles from "react-tsparticles";
-import { loadSlim } from "tsparticles-slim";
-import type { Engine } from "tsparticles-engine";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 
 // ─── Particle Config ──────────────────────────────────────────────────────────
 // Isolated as a constant so the component body stays clean (OCP / readability).
@@ -94,26 +93,26 @@ const PARTICLE_OPTIONS = {
 
 /**
  * memo() — prevents re-render whenever the parent (Hero) re-renders.
- * The init callback is also memoised with useCallback for the same reason.
  */
 const ParticleBackground = memo(function ParticleBackground() {
-  const init = useCallback(async (engine: Engine) => {
+  const init = useCallback(async (engine: any) => {
     // loadSlim ships only what we need — ~30 % smaller than the full bundle.
     await loadSlim(engine);
   }, []);
 
   return (
-    <Particles
-      id="hero-particles"
-      init={init}
-      // Fill the entire hero section; positioned absolute by the wrapper below
-      style={{
-        position: "absolute",
-        inset: 0,
-        zIndex: 0,
-      }}
-      options={PARTICLE_OPTIONS as never}
-    />
+    <ParticlesProvider init={init}>
+      <Particles
+        id="hero-particles"
+        // Fill the entire hero section; positioned absolute by the wrapper below
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+        }}
+        options={PARTICLE_OPTIONS as never}
+      />
+    </ParticlesProvider>
   );
 });
 

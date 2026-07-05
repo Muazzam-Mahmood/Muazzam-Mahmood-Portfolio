@@ -68,7 +68,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full" style={{ colorScheme: "dark" }}>
+    <html lang="en" className="h-full" style={{ colorScheme: "dark" }} data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col antialiased">
         {/* Navbar persists across all routes — no re-mount on navigation */}
         <Navbar />
