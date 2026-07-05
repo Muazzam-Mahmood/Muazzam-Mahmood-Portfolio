@@ -16,6 +16,7 @@ import "./globals.css";
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_METADATA.siteUrl),
   title: {
     default: SITE_METADATA.title,
     template: `%s | ${SITE_METADATA.name}`,
@@ -39,6 +40,14 @@ export const metadata: Metadata = {
     url: SITE_METADATA.siteUrl,
     title: SITE_METADATA.title,
     description: SITE_METADATA.description,
+    images: [
+      {
+        url: SITE_METADATA.ogImage,
+        width: 1200,
+        height: 630,
+        alt: SITE_METADATA.description,
+      },
+    ],
     siteName: SITE_METADATA.name,
   },
   twitter: {
@@ -46,6 +55,7 @@ export const metadata: Metadata = {
     title: SITE_METADATA.title,
     description: SITE_METADATA.description,
     creator: "@MuazzamMahmood",
+    images: [SITE_METADATA.ogImage],
   },
   robots: {
     index: true,

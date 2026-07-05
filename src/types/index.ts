@@ -104,6 +104,7 @@ export interface SiteMetadata {
   email: string;
   githubUsername: string;
   siteUrl: string;
+  ogImage:string;
   resumeUrl?: string;
 }
 

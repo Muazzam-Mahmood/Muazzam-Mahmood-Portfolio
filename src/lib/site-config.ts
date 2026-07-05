@@ -18,19 +18,20 @@ export const SITE_METADATA: SiteMetadata = {
     "Portfolio of Muazzam Mahmood — a Software Engineering student at FAST-NUCES passionate about full-stack web development, clean architecture, and building real-world products.",
   email: "muazzamm024@gmail.com",
   githubUsername: "Muazzam-Mahmood",
-  siteUrl: "https://muazzam-mahmood.netlify.app",
+  siteUrl: "https://muazzam-mahmood-portfolio.netlify.app",
+  ogImage:"/icon.png",
   resumeUrl: "/Muazzam_Mahmood_Resume.pdf",
 };
 
 // ─── Navigation Items ─────────────────────────────────────────────────────────
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "Home",      href: "/" },
-  { label: "About",     href: "/about" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Education", href: "/education" },
-  { label: "Skills",    href: "/skills" },
-  { label: "Projects",  href: "/projects" },
-  { label: "Contact",   href: "/contact" },
+  { label: "Skills", href: "/skills" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact", href: "/contact" },
 ];
 
 // ─── Social Links ─────────────────────────────────────────────────────────────
