@@ -1,0 +1,411 @@
+/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@import "tailwindcss";
+
+/* ─── Tailwind v4 Design Tokens (Dark Theme) ───────────────────────────────── */
+/* @theme is a valid Tailwind v4 directive. IDE CSS language servers that       */
+/* pre-date Tailwind v4 may flag it as "Unknown at rule" — this is a false      */
+/* positive and does not affect compilation or runtime behaviour.                */
+@theme inline {
+  /* ── Color Palette ── */
+  /* Base backgrounds */
+  --color-base:       #080810;   /* Darkest — page background             */
+  --color-surface:    #111119;   /* Cards, panels                         */
+  --color-card:       #16161F;   /* Elevated card background              */
+  --color-border:     #1E1E2E;   /* Subtle border color                   */
+
+  /* Brand accents */
+  --color-primary:    #7C3AED;   /* Violet — main accent & CTAs           */
+  --color-primary-hover: #6D28D9;
+  --color-primary-glow:  rgba(124, 58, 237, 0.25);
+
+  --color-secondary:  #06B6D4;   /* Cyan — highlights, badges             */
+  --color-secondary-hover: #0891B2;
+  --color-secondary-glow:  rgba(6, 182, 212, 0.20);
+
+  --color-accent:     #F59E0B;   /* Amber — star ratings, special badges  */
+  --color-accent-hover: #D97706;
+
+  /* Text */
+  --color-text:       #F1F5F9;   /* Primary text (near white)             */
+  --color-text-muted: #94A3B8;   /* Secondary / subtext                   */
+  --color-text-faint: #475569;   /* Placeholder / disabled                */
+
+  /* Status */
+  --color-success:    #22C55E;
+  --color-error:      #EF4444;
+
+  /* ── Typography ── */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* ── Spacing / Sizing ── */
+  --radius-sm:   0.375rem;
+  --radius-md:   0.625rem;
+  --radius-lg:   1rem;
+  --radius-xl:   1.5rem;
+  --radius-full: 9999px;
+}
+
+/* ─── Base Styles ──────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevent layout shift from scrollbar */
+  scrollbar-gutter: stable;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Custom Scrollbar ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-hover);
+}
+
+/* ─── Selection Color ──────────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-primary-glow);
+  color: var(--color-text);
+}
+
+/* ─── Focus Visible (Accessibility) ───────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Gradient Utilities ───────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+
+/* ─── Glow Effects ─────────────────────────────────────────────────────────── */
+.glow-primary {
+  box-shadow: 0 0 24px var(--color-primary-glow);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 24px var(--color-secondary-glow);
+}
+
+/* ─── Section Utilities ──────────────────────────────────────────────────────── */
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.section-divider {
+  width: 56px;
+  height: 3px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--radius-full);
+}
+
+/* ─── Glass Card ─────────────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(17, 17, 25, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Typewriter Cursor ──────────────────────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.typewriter-cursor {
+  color: var(--color-secondary);
+  animation: blink 1s step-end infinite;
+  font-weight: 300;
+  margin-left: 2px;
+}
+
+/* ─── Hero Grid Overlay ──────────────────────────────────────────────────────── */
+.hero-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.028) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+
+/* ─── Navbar Responsiveness ──────────────────────────────────────────────────── */
+.nav-desktop-links {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.nav-hamburger-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-desktop-links {
+    display: none;
+  }
+  .nav-hamburger-btn {
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* ─── About Section ──────────────────────────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.profile-photo-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.profile-photo-glow {
+  position: absolute;
+  inset: -24px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(124, 58, 237, 0.22),
+    transparent 70%
+  );
+  border-radius: var(--radius-xl);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Decorative corner brackets */
+.photo-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  z-index: 2;
+}
+
+.photo-corner-tl {
+  top: -8px;
+  left: -8px;
+  border-top: 2px solid var(--color-primary);
+  border-left: 2px solid var(--color-primary);
+  border-radius: 2px 0 0 0;
+}
+
+.photo-corner-br {
+  bottom: -8px;
+  right: -8px;
+  border-bottom: 2px solid var(--color-secondary);
+  border-right: 2px solid var(--color-secondary);
+  border-radius: 0 0 2px 0;
+}
+
+.profile-photo-frame {
+  position: relative;
+  z-index: 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  aspect-ratio: 4 / 5;
+  background: var(--color-card);
+}
+
+/* Stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.1rem;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: border-color 0.25s;
+}
+
+.stat-value {
+  font-size: 1.9rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .profile-photo-wrapper {
+    max-width: 240px;
+  }
+}
+
+/* ─── Education Timeline ─────────────────────────────────────────────────────── */
+.timeline-item {
+  display: flex;
+  gap: 1.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.timeline-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 0.35rem;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  box-shadow: 0 0 18px rgba(124, 58, 237, 0.55);
+  flex-shrink: 0;
+}
+
+.timeline-line {
+  width: 2px;
+  flex: 1;
+  min-height: 48px;
+  margin-top: 8px;
+  background: linear-gradient(
+    to bottom,
+    rgba(124, 58, 237, 0.5),
+    rgba(124, 58, 237, 0.05)
+  );
+}
+
+.timeline-content {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  flex: 1;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.timeline-content:hover {
+  border-color: rgba(124, 58, 237, 0.28);
+  box-shadow: 0 4px 24px rgba(124, 58, 237, 0.08);
+}
+
+/* ─── Skills Grid ─────────────────────────────────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  gap: 1.2rem;
+}
+
+.skill-card-hover:hover {
+  border-color: rgba(124, 58, 237, 0.25) !important;
+}
+
+/* ─── Projects Grid ──────────────────────────────────────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.2rem;
+}
+
+.project-card-hover:hover {
+  border-color: rgba(124, 58, 237, 0.28) !important;
+}
+
+/* ─── Contact Layout ─────────────────────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Name + Email side-by-side on wider forms */
+.contact-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Input / textarea focus ring — CSS-first; avoids JS DOM mutation */
+.contact-input:focus-visible {
+  outline: none;
+  border-color: rgba(124, 58, 237, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .contact-form-row {
+    grid-template-columns: 1fr;
+  }
+}

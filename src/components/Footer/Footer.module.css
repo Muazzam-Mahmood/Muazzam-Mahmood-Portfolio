@@ -1,0 +1,181 @@
+/**
+ * @file Footer.module.css
+ * @description Scoped styles for the Footer, FooterNav, and FooterSocials
+ *              components. Uses CSS custom properties from globals.css so the
+ *              design tokens stay the single source of truth.
+ */
+
+/* ─── Wrapper ─────────────────────────────────────────────────────────────── */
+
+.footer {
+  position: relative;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Thin gradient line at very top */
+.topDivider {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-primary) 30%,
+    var(--color-secondary) 70%,
+    transparent 100%
+  );
+}
+
+/* ─── Inner Grid ──────────────────────────────────────────────────────────── */
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.25rem 2rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ─── Brand Column ────────────────────────────────────────────────────────── */
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.brandName {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.brandName:hover {
+  opacity: 0.85;
+}
+
+.tagline {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  max-width: 340px;
+  line-height: 1.6;
+}
+
+/* ─── Social Icons ────────────────────────────────────────────────────────── */
+
+.socials {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.socialLink:hover {
+  color: var(--color-primary);
+  border-color: rgba(124, 58, 237, 0.45);
+  background: rgba(124, 58, 237, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.18);
+}
+
+/* ─── Quick Nav ───────────────────────────────────────────────────────────── */
+
+.quickNav {
+  min-width: 140px;
+}
+
+.navHeading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-faint);
+  margin-bottom: 1rem;
+}
+
+.navList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem 1.5rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.2s, gap 0.2s;
+}
+
+.navLink:hover {
+  color: var(--color-primary);
+  gap: 0.6rem;
+}
+
+.navLinkArrow {
+  font-size: 1rem;
+  color: var(--color-primary);
+  opacity: 0.7;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+
+.navLink:hover .navLinkArrow {
+  opacity: 1;
+}
+
+/* ─── Bottom Bar ──────────────────────────────────────────────────────────── */
+
+.bottomBar {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.85rem 2rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding: 2rem 1.25rem 1.25rem;
+  }
+
+  .bottomBar {
+    padding: 0.85rem 1.25rem 1.25rem;
+  }
+
+  .tagline {
+    max-width: 100%;
+  }
+}
