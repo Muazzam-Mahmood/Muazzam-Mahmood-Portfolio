@@ -77,7 +77,7 @@ npx tsc --noEmit    # TypeScript — must return 0 errors
 
 ## Live Demo
 
-🔗 **[muazzam-mahmood.netlify.app](https://muazzam-mahmood.netlify.app)** *(deployed at project completion)*
+🔗 **[muazzam-mahmood.netlify.app](https://muazzam-mahmood-portfolio.netlify.app)**
 
 ---
 
